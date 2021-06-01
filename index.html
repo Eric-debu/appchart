@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>app数据可视化</title>
+
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./fonts/icomoon.css">
+</head>
+
+<body>
+<header>
+    <h1>app数据可视化</h1>
+    <div class="showTime"></div>
+    <script>
+        var t = null;
+        t = setTimeout(time, 1000); //開始运行
+        function time() {
+            clearTimeout(t); //清除定时器
+            dt = new Date();
+            var y = dt.getFullYear();
+            var mt = dt.getMonth() + 1;
+            var day = dt.getDate();
+            var h = dt.getHours(); //获取时
+            var m = dt.getMinutes(); //获取分
+            var s = dt.getSeconds(); //获取秒
+            /*document.querySelector(".showTime").innerHTML =
+                "当前时间：" +
+                y +
+                "年" +
+                mt +
+                "月" +
+                day +
+                "-" +
+                h +
+                "时" +
+                m +
+                "分" +
+                s +
+                "秒";*/
+            t = setTimeout(time, 1000); //设定定时器，循环运行
+        }
+    </script>
+        <input id="Button1" type="button" value="全屏显示" onclick="kaishi()" class="button1"/>
+        <input id="Button2" type="button" value="退出全屏" onclick="guanbi()" class="button1"/>
+        <script>
+            function kaishi()
+            {
+                var docElm = document.documentElement;
+                //W3C
+                if (docElm.requestFullscreen) {
+                    docElm.requestFullscreen();
+                }
+                //FireFox
+                else if (docElm.mozRequestFullScreen) {
+                    docElm.mozRequestFullScreen();
+                }
+                //Chrome等
+                else if (docElm.webkitRequestFullScreen) {
+                    docElm.webkitRequestFullScreen();
+                }
+                //IE11
+                else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+            }
+
+            function guanbi() {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+                else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                }
+                else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                }
+                else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+
+            document.addEventListener("fullscreenchange", function () {
+                fullscreenState.innerHTML = (document.fullscreen) ? "" : "not ";
+            }, false);
+
+            document.addEventListener("mozfullscreenchange", function () {
+                fullscreenState.innerHTML = (document.mozFullScreen) ? "" : "not ";
+            }, false);
+
+            document.addEventListener("webkitfullscreenchange", function () {
+                fullscreenState.innerHTML = (document.webkitIsFullScreen) ? "" : "not ";
+            }, false);
+
+            document.addEventListener("msfullscreenchange", function () {
+                fullscreenState.innerHTML = (document.msFullscreenElement) ? "" : "not ";
+            }, false);
+        </script>
+
+</header>
+
+<div class="viewport">
+
+    <div class="column">
+        <!--版权所有   无领导小组 -->
+
+        <!--监控-->
+        <div class="monitor panel">
+            <div class="inner">
+                <div class="tabs">
+                    <a href="javascript:;" data-index="0" class="active">员工任务分数排行榜</a>
+                </div>
+                <div class="content" style="display: block;">
+                    <div class="head">
+                        <span class="col">员工姓名</span>
+                        <span class="col">所属部门</span>
+                        <span class="col">获得分数</span>
+                    </div>
+                    <div id="app">
+                        <div class="marquee-view">
+                            <div class="marquee">
+                                <div class="row" v-for="n in list" style="font-size: 15px">
+                                    <span class="col">{{n.name}}</span>
+                                    <span class="col">{{n.department}}</span>
+                                    <span class="col">{{n.score}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--点位-->
+        <div class="point panel">
+            <div class="inner">
+                <h3>案件数据统计</h3>
+                <div class="chart">
+                    <div class="pie" style=""></div>
+                    <div class="data" style="width: 4rem">
+                        <div class="item">
+                            <h4>3,960</h4>
+                            <span>
+                                    <i class="icon-dot" style="color: #ed3f35"></i>
+                                    案件总数
+                                </span>
+                        </div>
+                        <div class="item">
+                            <h4>418</h4>
+                            <span>
+                                    <i class="icon-dot" style="color: #eacf19"></i>
+                                    本月新增
+                                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="overview panel">
+            <div class="inner">
+                <div class="item">
+                    <h4>7090</h4>
+                    <span>
+                            <i class="icon-dot" style="color: #006cff"></i>
+                            注册总数
+                        </span>
+                </div>
+                <div class="item">
+                    <h4>3425</h4>
+                    <span>
+                            <i class="icon-dot" style="color: #6acca3"></i>
+                            在线人数
+                        </span>
+                </div>
+                <div class="item">
+                    <h4>14495</h4>
+                    <span>
+                            <i class="icon-dot" style="color: #6acca3"></i>
+                            已完成任务数
+                        </span>
+                </div>
+                <div class="item">
+                    <h4>121</h4>
+                    <span>
+                            <i class="icon-dot" style="color: #ed3f35"></i>
+                            今日新增
+                        </span>
+                </div>
+            </div>
+        </div>
+        <!-- 地图 -->
+        <div class="map">
+            <h3 style="color:#ffffff;font-size:0.833rem"></h3>
+            <h4 style="color: #fffcb0;font-size: 0.733rem;"></h4>
+            <h4 style="color: #fffcb0;font-size: 0.733rem"></h4>
+                <div class="chart"></div>
+                <div class="map1"></div>
+                <div class="map2"></div>
+                <div class="map3"></div>
+        </div>
+
+        <!-- 用户 -->
+
+    </div>
+    <div class="column">
+
+        <!-- 销售额 -->
+        <div class="sales panel">
+            <div class="inner">
+                <div class="caption">
+                    <h3>用户统计</h3>
+                    <a href="javascript:;" class="active" data-type="year">年</a>
+                    <!--                        <a href="javascript:;" data-type="quarter">季</a>-->
+<!--                                            <a href="javascript:;" data-type="month">本年</a>-->
+                    <!--                        <a href="javascript:;" data-type="week">周</a>-->
+                </div>
+                <div class="chart">
+                    <div class="label">单位:个</div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </div>
+        <!--产业概况-->
+        <div class="users panel">
+            <div class="inner">
+                <h3>部门任务分数</h3>
+                <div class="chart">
+                    <div class="bar">
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="js/vue.min.js"></script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/echarts.min.js"></script>
+<script src="js/axios-0.18.0.js"></script>
+<script src="./js/index.js"></script>
+
+<script src="./js/china.js"></script>
+<script src="./js/mymap.js"></script>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            data: 'hello',
+            list: []
+        },
+        created: function () {
+            this.list=[{name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                {name:'陈俊',department:'销售部',score:'45'},
+                ]
+        },
+    })
+</script>
+</html>
