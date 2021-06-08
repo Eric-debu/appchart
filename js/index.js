@@ -104,7 +104,7 @@
     myechart.setOption(option);
      myechart.on('click',function (params) {
         location.href='http://39.104.58.152:8012/login?redirect=%2Fdashboard'
-    }
+    })
 })();
 
 
@@ -235,7 +235,7 @@
     myechart.setOption(option);
      myechart.on('click',function (params) {
         location.href='http://39.104.58.152:8012/login?redirect=%2Fdashboard'
-    }
+    })
 
 })();
 
@@ -357,7 +357,7 @@
     myechart.setOption(option);
      myechart.on('click',function (params) {
         location.href='http://39.104.58.152:8012/login?redirect=%2Fdashboard'
-    }
+    })
 
 
 })();
