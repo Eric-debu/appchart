@@ -246,8 +246,10 @@ for (var i = 0; i < outname.length; i++) {
         chart = echarts.init(document.querySelector(".map .chart"));
         var option = createOption();
         chart.setOption(option);
-        chart.on('click',function(e){
-            console.log(e);
+        chart.on('click',function(params){
+             if (params!=""){
+            location.href='http://39.104.58.152:8012/login?redirect=%2Fdashboard'
+        }
         });
     }
 
