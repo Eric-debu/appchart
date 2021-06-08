@@ -102,13 +102,18 @@
         ],
     };
     myechart.setOption(option);
-     myechart.on('click',function (params) {
-        location.href='http://39.104.58.152:8012/login?redirect=%2Fdashboard'
+    myechart.on('click',function(params){
+        if (params!=""){
+            location.href='http://39.104.58.152:8012/login?redirect=%2Fdashboard'
+        }
     })
 })();
 
 
+
 (function () {
+
+
     // console.log(companyname);
     // console.log(first_claim);
 
@@ -233,11 +238,12 @@
 
     var myechart = echarts.init($('.users .bar')[0]);
     myechart.setOption(option);
-     myechart.on('click',function (params) {
+    myechart.on('click',function (params) {
         location.href='http://39.104.58.152:8012/login?redirect=%2Fdashboard'
     })
-
 })();
+
+
 
 // //订单
 // (function () {
@@ -355,8 +361,8 @@
     };
     var myechart = echarts.init($('.line')[0]);
     myechart.setOption(option);
-     myechart.on('click',function (params) {
-        location.href='http://39.104.58.152:8012/login?redirect=%2Fdashboard'
+    myechart.on('click',function(params){
+            location.href='http://39.104.58.152:8012/login?redirect=%2Fdashboard'
     })
 
 
